@@ -1,0 +1,9 @@
+#!/bin/bash
+commitMsg=$1
+branch=$(git rev-parse --abbrev-ref HEAD) 
+name=$(echo $branch | awk -F/ '{print $1 ": "}') 
+ticket=$(echo $branch | awk -F/ '{print " (" $3 ")"}')
+
+# print out + copy to clipboard
+echo "$name$commitMsg$ticket"
+echo -n "$name$commitMsg$ticket" | pbcopy
